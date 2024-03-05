@@ -34,7 +34,7 @@ body, html {
 .letter {
   opacity: 0;
   transition: opacity 0.5s ease;
-  padding: 1vw;
+  padding: 0.5vw;
 }
 
 .magnifier {
@@ -43,6 +43,22 @@ body, html {
   top: -3vw; /* Position above the letters */
   animation: moveMagnifier 10s ease-in-out forwards, wavyMotion 2s ease-in-out infinite;
 }
+
+.map {
+  width: 8vw; /* Match the magnifier size */
+  position: absolute;
+  top: 3.5vw; /* Adjust to match the magnifier position */
+  right: 116.5%; /* Adjust to place it in front of the letter Q */
+  transform: translateX(100%); /* Adjust if necessary to align perfectly */
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.5s ease; /* Smooth transition for appearing */
+  z-index: 1; /* Ensure it's above the letters but below the magnifier */
+}
+
+.magnifier {
+  z-index: 2; /* Ensure it's above the map */
+}
+
 
 @keyframes moveMagnifier {
   0% { right: -25vw; }
@@ -60,11 +76,12 @@ body, html {
 <div class="quest-container">
   <div class="quest-animation">
     <img src="q.png" alt="Q" class="magnifier">
+    <img src="map.png" alt="Map" class="map">
     <span class="letter" style="color: #FFF;">Q</span>
     <span class="letter" data-delay="6000">u</span>
-    <span class="letter" data-delay="5000">e</span>
-    <span class="letter" data-delay="4000">s</span>
-    <span class="letter" data-delay="3000">t</span>
+    <span class="letter" data-delay="5100">e</span>
+    <span class="letter" data-delay="4200">s</span>
+    <span class="letter" data-delay="3300">t</span>
   </div>
 </div>
 <script>
@@ -76,7 +93,13 @@ body, html {
         letter.style.opacity = 1;
       }, delay);
     });
+
+    // Show the map towards the end of the magnifier animation
+    setTimeout(() => {
+      document.querySelector('.map').style.opacity = 1;
+    }, 9500); // Adjust the time as needed
   });
+
 </script>
 </body>
 </html>
