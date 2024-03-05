@@ -25,9 +25,8 @@ body, html {
 
 .quest-animation {
   font-family: 'Roboto', sans-serif;
-  font-size: 10vw; /* Responsive font size */
-  color: black;
-  display: flex; /* Ensure horizontal layout */
+  font-size: 10vw;
+  display: flex;
   position: relative;
 }
 
@@ -38,31 +37,31 @@ body, html {
 }
 
 .magnifier {
-  width: 25vw; /* Responsive width for magnifier image */
+  width: 25vw;
   position: absolute;
-  top: -3vw; /* Position above the letters */
+  top: -3vw;
   animation: moveMagnifier 10s ease-in-out forwards, wavyMotion 2s ease-in-out infinite;
 }
 
 .map {
-  width: 8vw; /* Match the magnifier size */
+  width: 8vw;
   position: absolute;
-  top: 3.5vw; /* Adjust to match the magnifier position */
-  right: 116.5%; /* Adjust to place it in front of the letter Q */
-  transform: translateX(100%); /* Adjust if necessary to align perfectly */
-  opacity: 0; /* Initially hidden */
-  transition: opacity 0.5s ease; /* Smooth transition for appearing */
-  z-index: 1; /* Ensure it's above the letters but below the magnifier */
+  top: 3.5vw;
+  right: 116.5%;
+  transform: translateX(100%);
+  opacity: 0;
+  transition: opacity 0.5s ease; 
+  z-index: 1;
 }
 
 .magnifier {
-  z-index: 2; /* Ensure it's above the map */
+  z-index: 2;
 }
 
 
 @keyframes moveMagnifier {
   0% { right: -25vw; }
-  100% { right: 55%; transform: translateX(100%); } /* Move from right to left */
+  100% { right: 55%; transform: translateX(100%); }
 }
 
 @keyframes wavyMotion {
@@ -94,12 +93,10 @@ body, html {
       }, delay);
     });
 
-    // Show the map towards the end of the magnifier animation
     setTimeout(() => {
       document.querySelector('.map').style.opacity = 1;
-    }, 9500); // Adjust the time as needed
-  });
-
+    }, 9500);
+  })
 </script>
 </body>
 </html>
