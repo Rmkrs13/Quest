@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quest Animation</title>
+<title>Quest</title>
+<link rel="stylesheet" href="normalize.css">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <style>
-/* Sets the height of the body and html to 100%, removes margin, and centers content */
 body, html {
   height: 100%;
   margin: 0;
@@ -16,48 +16,42 @@ body, html {
   background: white;
 }
 
-/* Centers the text within the quest container */
 .quest-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
 }
 
-/* Styles for the quest animation wrapper, including font settings and positioning */
 .quest-animation {
-  display: inline-block;
   font-family: 'Roboto', sans-serif;
-  font-size: 12em;
+  font-size: 10vw; /* Responsive font size */
   color: black;
+  display: flex; /* Ensure horizontal layout */
   position: relative;
 }
 
-/* Initial style for letters, making them invisible at first */
 .letter {
   opacity: 0;
-  position: relative;
-  z-index: 1;
-  transition: opacity 0.5s ease; /* Smooth transition for opacity change */
+  transition: opacity 0.5s ease;
+  padding: 5px;
 }
 
-/* Styles for the magnifier image, including its animation */
 .magnifier {
-  width: 360px; /* Fixed width for the magnifier image */
+  width: 25vw; /* Responsive width for magnifier image */
   position: absolute;
-  right: 200px; /* Adjusted to start from the right of 'T' */
-  z-index: 2;
-  /* Animation for moving the magnifier and adding a wavy motion */
+  top: -3vw; /* Position above the letters */
   animation: moveMagnifier 10s ease-in-out forwards, wavyMotion 2s ease-in-out infinite;
 }
 
-/* Keyframes for moving the magnifier from a starting position to the end */
 @keyframes moveMagnifier {
-  0% { right: -200px; }
-  100% { right: calc(100% - 240px); }
+  0% { right: -25vw; }
+  100% { right: 55%; transform: translateX(100%); } /* Move from right to left */
 }
 
-/* Keyframes for adding a wavy motion to the magnifier */
 @keyframes wavyMotion {
-  0%, 100% { transform: translate(0, -10px); }
-  50% { transform: translate(0, 10px); }
+  0%, 100% { transform: translate(0, -1vw); }
+  50% { transform: translate(0, 1vw); }
 }
 
 </style>
@@ -65,23 +59,21 @@ body, html {
 <body>
 <div class="quest-container">
   <div class="quest-animation">
-    <img src="q.png" alt="Q" class="magnifier"> <!-- The magnifier image -->
-    <!-- Span elements for each letter with a data-delay attribute for controlling the visibility timing -->
+    <img src="q.png" alt="Q" class="magnifier">
     <span class="letter" style="color: #FFF;">Q</span>
     <span class="letter" data-delay="6000">u</span>
-    <span class="letter" data-delay="4500">e</span>
-    <span class="letter" data-delay="2500">s</span>
-    <span class="letter" data-delay="1500">t</span>
+    <span class="letter" data-delay="5000">e</span>
+    <span class="letter" data-delay="4000">s</span>
+    <span class="letter" data-delay="3000">t</span>
   </div>
 </div>
 <script>
-  // Script to reveal letters based on the data-delay attribute
   document.addEventListener('DOMContentLoaded', function() {
     const letters = document.querySelectorAll('.letter');
     letters.forEach(letter => {
       const delay = letter.getAttribute('data-delay');
       setTimeout(() => {
-        letter.style.opacity = 1; // Makes the letter visible after the specified delay
+        letter.style.opacity = 1;
       }, delay);
     });
   });
